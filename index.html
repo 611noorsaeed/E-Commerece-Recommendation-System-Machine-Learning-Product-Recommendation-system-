@@ -6,8 +6,9 @@
     <title>Ecommerce Recommendation System</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <style>
-        body {
+</head>
+<style>
+     body {
             background-color: #f8f9fa;
         }
         .navbar {
@@ -27,10 +28,7 @@
         .nav-link.btn {
             border-radius: 5px; /* Add rounded corners to buttons */
         }
-        /* Additional styles for modal */
-        .modal-body {
-            text-align: center;
-        }
+
         .modal-content {
             background-color: #fff; /* Set modal content background color */
             color: #000; /* Set modal content text color */
@@ -39,9 +37,9 @@
             background-color: #000; /* Set modal content background color for dark theme */
             color: #fff; /* Set modal content text color for dark theme */
         }
-    </style>
-</head>
+</style>
 <body>
+
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand mx-auto" href="#">Ecommerce Recommendation System</a>
@@ -67,6 +65,7 @@
   </div>
 </nav>
 
+
 <!-- Video -->
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
@@ -79,35 +78,12 @@
   </div>
 </div>
 
-
-<!--messages-->
-<!--sign up messsage here-->
-{% if signup_message %}
-<h1></h1>
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-  <strong>Success!</strong>{{signup_message}}
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
-
-{% endif %}
-{% if message_must_sign %}
-<h1></h1>
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-  <strong>Warning!</strong> {{message_must_sign}}
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
-
-{% endif %}
-
-
 <!-- Go To Main Page Button -->
 <div class="text-center mt-5">
   <a  href="main" class="btn btn-primary btn-lg">Go To Main Page</a>
 </div>
 
-
-
-
+<!--trending recommendations-->
 <!-- Products -->
 <div class="container mt-5">
   <h2 class="text-center mb-4">Trending Products</h2>
@@ -117,7 +93,7 @@
       <div class="card">
           <img src="{{ random_product_image_urls[index] }}" class="card-img-top" alt="{{ product['Name'] }}" style="height: 200px;">
         <div class="card-body">
-          <h5 class="card-title">{{ truncate(product['Name'], 12) }}</h5>
+          <h5 class="card-title">{{ truncate(product['Name'],12) }}</h5>
           <p class="card-text">Brand: {{ product['Brand'] }}</p>
           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#productModal{{ index }}">Buy Now</button>
         </div>
@@ -159,6 +135,7 @@
     {% endfor %}
   </div>
 </div>
+
 
 
 <!-- Bootstrap modal for sign up -->
@@ -216,6 +193,7 @@
 </div>
 
 
+
 <!-- Settings Modal -->
 <div class="modal fade" id="settingsModal" tabindex="-1" role="dialog" aria-labelledby="settingsModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -259,12 +237,10 @@
   </div>
 </div>
 
-
-
-
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 <script>
   // Handle click on Settings link to open the modal
   document.getElementById('settingsLink').addEventListener('click', function() {
@@ -303,6 +279,7 @@
     document.body.style.zoom = "100%";
   });
 </script>
+
 
 
 <!--footer-->
