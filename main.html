@@ -71,6 +71,68 @@
     </form>
 </div>
 
+{% if message %}
+<h5 style="margin-left:42%;margin-top:10px; text:bold;">{{message}}</h5>
+{% endif %}
+
+<!--trending recommendations-->
+<!--'Name', 'ReviewCount', 'Brand', 'ImageURL', 'Rating'-->
+<!-- Products -->
+{% if not content_based_rec.empty %}
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Recommended Products</h2>
+  <div class="row mt-4">
+    {% for index, product in content_based_rec.iterrows() %}
+    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+      <div class="card">
+          <img src="{{ product['ImageURL'] }}" class="card-img-top" alt="{{ product['Name'] }}" style="height: 200px;">
+        <div class="card-body">
+          <h5 class="card-title">{{ truncate(product['Name'],12) }}</h5>
+          <p class="card-text">Brand: {{ product['Brand'] }}</p>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#productModal{{ index }}">Buy Now</button>
+        </div>
+      </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="productModal{{ index }}" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="productModalLabel">{{ product['Name'] }}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-4">
+                  <img src="{{ product['ImageURL'] }}" class="img-fluid" alt="{{ product['Name'] }}" style="height: 200px;">
+              </div>
+              <div class="col-md-8">
+                <p><strong>Brand:</strong> {{ product['Brand'] }}</p>
+                <!-- Add other product details here -->
+                <!-- Example: -->
+                <p><strong>Review Count:</strong> {{ product['ReviewCount'] }}</p>
+                <p><strong>Rating:</strong> {{ product['Rating'] }}</p>
+                <p><strong>Price:</strong> {{ random_price }}</p>
+                <!-- Add more details as needed -->
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endif %}
+
+
 <!-- Bootstrap modal for sign up -->
 <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
   <div class="modal-dialog">
